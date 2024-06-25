@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FirebasePDP</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_welcome_message">Добро пожаловать в наше приложение о путешествиях!</string>
+    <string name="default_background_image_url">https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg</string>
+    <string name="notification_channel_name">Travel Updates</string>
+    <string name="notification_channel_description">Stay informed with the latest travel news.</string>
+    <string name="please_fill_in_both_fields">Please fill in both fields</string>
+    <string name="note_added">Note added</string>
+    <string name="error_adding_note">Error adding note: %1$s</string>
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="button_save">Save</string>
+    <string name="note_details_title">Заголовок заметки</string>
+    <string name="note_details_content">Содержание заметки</string>
+    <string name="comments">Комментарии</string>
+    <string name="write_comments">Написать комментарий</string>
+    <string name="button_send">Отправить</string>
+    <string name="add_notes">Добавить заметку</string>
+    <string name="comment_content">Comment content</string>
+    <string name="note_title_content">Заголовок заметки</string>
+</resources>

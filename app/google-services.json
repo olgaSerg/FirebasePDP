@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470299067652",
+    "project_id": "fir-pdp-7ac1c",
+    "storage_bucket": "fir-pdp-7ac1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470299067652:android:20d8c53ee72638af563c51",
+        "android_client_info": {
+          "package_name": "com.example.firebasepdp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYCujVwDGz_Y6gY7VshHVFqs9L5l2f1go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

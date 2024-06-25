@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/noteListFragment">
+
+    <fragment
+        android:id="@+id/noteListFragment"
+        android:name="com.example.firebasepdp.presentation.fragment.NoteListFragment"
+        android:label="Note List"
+        tools:layout="@layout/fragment_note_list">
+        <action
+            android:id="@+id/action_noteListFragment_to_noteDetailsFragment"
+            app:destination="@id/noteDetailsFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/noteDetailsFragment"
+        android:name="com.example.firebasepdp.presentation.fragment.NoteDetailsFragment"
+        android:label="Note Details"
+        tools:layout="@layout/fragment_note_details">
+        <argument
+            android:name="noteId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.firebasepdp.presentation.fragment.AddNoteFragment"
+        android:label="Add Note"
+        tools:layout="@layout/fragment_add_note" />
+
+</navigation>
