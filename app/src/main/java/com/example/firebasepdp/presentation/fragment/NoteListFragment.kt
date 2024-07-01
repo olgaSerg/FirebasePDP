@@ -20,7 +20,7 @@ private const val NOTES_PATH = "notes"
 
 class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
 
-    private lateinit var noteAdapter: NoteAdapter
+    private var noteAdapter: NoteAdapter? = null
     private val noteList = mutableListOf<Note>()
 
     override fun inflateBinding(
@@ -63,7 +63,7 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
                     )
                     noteList.add(note)
                 }
-                noteAdapter.notifyDataSetChanged()
+                noteAdapter?.notifyDataSetChanged()
                 showLoading(false)
             }
             .addOnFailureListener {
@@ -92,5 +92,10 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.fabAddNote.visibility = if (isLoading) View.GONE else View.VISIBLE
         binding.fabViewImages.visibility = if (isLoading) View.GONE else View.VISIBLE
+    }
+
+    override fun onDestroyView() {
+        noteAdapter = null
+        super.onDestroyView()
     }
 }

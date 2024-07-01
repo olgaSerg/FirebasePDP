@@ -18,8 +18,8 @@ private const val ARGUMENTS_KEY = "noteId"
 
 class NoteDetailsFragment : BaseFragment<FragmentNoteDetailsBinding>() {
 
-    private lateinit var commentAdapter: CommentAdapter
     private val commentList = mutableListOf<Comment>()
+    private var commentAdapter: CommentAdapter? = null
     private var noteRepository: NoteRepository? = null
     private var commentRepository: CommentRepository? = null
 
@@ -75,7 +75,7 @@ class NoteDetailsFragment : BaseFragment<FragmentNoteDetailsBinding>() {
         commentRepository?.fetchComments(noteId) { comments ->
             commentList.clear()
             commentList.addAll(comments)
-            commentAdapter.notifyDataSetChanged()
+            commentAdapter?.notifyDataSetChanged()
         }
     }
 
@@ -93,6 +93,7 @@ class NoteDetailsFragment : BaseFragment<FragmentNoteDetailsBinding>() {
         commentRepository?.removeCommentsListener()
         commentRepository = null
         noteRepository = null
+        commentAdapter = null
         super.onDestroy()
     }
 }
