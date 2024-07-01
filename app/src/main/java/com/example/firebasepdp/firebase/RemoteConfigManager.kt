@@ -3,7 +3,7 @@ package com.example.firebasepdp.firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 
-private const val REMOTE_CONFIG_KEY = "welcome_message"
+private const val WELCOME_IMAGE_KEY = "welcome_message"
 private const val BACKGROUND_IMAGE_URL_KEY = "background_image_url"
 
 class RemoteConfigManager {
@@ -29,7 +29,7 @@ class RemoteConfigManager {
     }
 
     fun getWelcomeMessage(): String {
-        return firebaseRemoteConfig.getString(REMOTE_CONFIG_KEY)
+        return firebaseRemoteConfig.getString(WELCOME_IMAGE_KEY)
     }
 
     fun getBackgroundImageUrl(): String {

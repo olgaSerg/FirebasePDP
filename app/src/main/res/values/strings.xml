@@ -19,4 +19,21 @@
     <string name="add_notes">Добавить заметку</string>
     <string name="comment_content">Comment content</string>
     <string name="note_title_content">Заголовок заметки</string>
+    <string name="add_image">Add image</string>
+    <string name="image">image</string>
+    <string name="note_image">note_image</string>
+    <string name="gallery">галерея</string>
+    <string name="title">title</string>
+    <string name="content">content</string>
+    <string name="date">date</string>
+    <string name="error_loading_images_toast">Error loading images: %1$s</string>
+    <string name="permission_denied_toast">Permission denied</string>
+    <string name="storage_permission_is_needed_to_pick_images_toast">Storage permission is needed to pick images</string>
+    <string name="intent_type">image/*</string>
+    <string name="failed_to_upload_image_toast">Failed to upload image</string>
+    <string name="note_saved_successfully_toast">Note saved successfully</string>
+    <string name="failed_to_save_note_toast">Failed to save note</string>
+    <string name="note_and_image_saved_successfully_toast">Note and image saved successfully</string>
+    <string name="failed_to_save_image_info_toast">Failed to save image info</string>
+    <string name="images_reference_path">images/%1$s.jpg</string>
 </resources>

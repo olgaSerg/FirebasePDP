@@ -1,13 +1,14 @@
 package com.example.firebasepdp.utils
 
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-
-private const val DATE_FORMAT = "dd.MM.yyyy"
+import com.google.firebase.Timestamp
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object DateFormatter {
-    fun formatDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern(DATE_FORMAT)
-        return date.format(formatter)
+
+    private val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+
+    fun formatTimestamp(timestamp: Timestamp): String {
+        return dateFormat.format(timestamp.toDate())
     }
 }

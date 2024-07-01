@@ -43,6 +43,13 @@
                 android:textColor="@android:color/darker_gray"
                 android:layout_marginBottom="16dp" />
 
+            <ImageView
+                android:id="@+id/noteImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/image" />
+
             <TextView
                 android:id="@+id/commentsHeader"
                 android:layout_width="wrap_content"

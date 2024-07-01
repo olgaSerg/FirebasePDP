@@ -1,65 +1,80 @@
 package com.example.firebasepdp.presentation.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.firebasepdp.R
 import com.example.firebasepdp.presentation.base.BaseFragment
 import com.example.firebasepdp.databinding.FragmentAddNoteBinding
-import com.example.firebasepdp.presentation.base.App
-import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Date
-
-private const val NOTES_PATH = "notes"
-private const val TITLE_KEY = "title"
-private const val CONTENT_KEY = "content"
-private const val DATA_KEY = "data"
+import com.example.firebasepdp.helper.ImagePicker
+import com.example.firebasepdp.repository.NoteRepository
+import com.example.firebasepdp.helper.PermissionManager
 
 class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>() {
+
+    private var imageUri: Uri? = null
+    private var permissionManager: PermissionManager? = null
+    private var imagePicker: ImagePicker? = null
+    private var noteRepository: NoteRepository? = null
 
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentAddNoteBinding {
-        return FragmentAddNoteBinding.inflate(inflater, container, false)
+        return FragmentAddNoteBinding.inflate(inflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        permissionManager = PermissionManager(this) { openGallery() }
+        imagePicker = ImagePicker(this) { uri -> onImagePicked(uri) }
+        noteRepository = NoteRepository(requireContext())
+
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
         binding.buttonSave.setOnClickListener {
             val title = binding.editTextTitle.text.toString()
             val content = binding.editTextContent.text.toString()
 
             if (title.isNotEmpty() && content.isNotEmpty()) {
-                saveNoteToFirestore(title, content)
+                if (imageUri != null) {
+                    binding.buttonAddImage.isEnabled = false
+                    it.isEnabled = false
+                    noteRepository?.uploadImageToStorage(imageUri!!, title, content)
+                } else {
+                    it.isEnabled = false
+                    noteRepository?.saveNoteAndImageToFirestore(title, content, null)
+                }
             } else {
                 Toast.makeText(context,
                     getString(R.string.please_fill_in_both_fields), Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.buttonAddImage.setOnClickListener {
+            permissionManager?.requestStoragePermission()
+        }
     }
 
-    private fun saveNoteToFirestore(title: String, content: String) {
-        val db = App.getAppInstance().firestore
-        val note = hashMapOf(
-            TITLE_KEY to title,
-            CONTENT_KEY to content,
-            DATA_KEY to Date()
-        )
+    private fun onImagePicked(uri: Uri) {
+        imageUri = uri
+        binding.imageView.setImageURI(uri)
+    }
 
-        db.collection(NOTES_PATH)
-            .add(note)
-            .addOnSuccessListener {
-                Toast.makeText(context, getString(R.string.note_added), Toast.LENGTH_SHORT).show()
-                findNavController().navigateUp()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(context,
-                    getString(R.string.error_adding_note, e.message), Toast.LENGTH_SHORT).show()
-            }
+    private fun openGallery() {
+        imagePicker?.openGallery()
+    }
+
+    override fun onDestroyView() {
+        permissionManager = null
+        imagePicker = null
+        noteRepository = null
+        super.onDestroyView()
     }
 }

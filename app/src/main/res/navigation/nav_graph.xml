@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_noteListFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_imageGalleryFragment"
+            app:destination="@id/imageGalleryFragment" />
     </fragment>
 
     <fragment
@@ -33,4 +36,13 @@
         android:label="Add Note"
         tools:layout="@layout/fragment_add_note" />
 
+    <fragment
+        android:id="@+id/imageGalleryFragment"
+        android:name="com.example.firebasepdp.presentation.fragment.ImagesGalleryFragment"
+        android:label="Image Gallery"
+        tools:layout="@layout/fragment_image_gallery">
+        <action
+            android:id="@+id/action_imageGalleryFragment_to_noteDetailFragment"
+            app:destination="@id/noteDetailsFragment"/>
+    </fragment>
 </navigation>
